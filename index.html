@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Own CSS -->
+    <link rel="stylesheet" href="style.css">
+    <title>Kelin/KeuBala calculator</title>
+  </head>
+  <body>
+    <div class="container mt-4 shadow p-3 mb-5 bg-white rounded">
+        <div class="row">
+            <div class="col col-sm-12">
+                <h1 class="text-center">Kelin/KeuBala calculator</h1>
+                  <form>
+                    <div class="education">
+                    <label for="education_level">Education level:</label><br>
+                    <select id="education">
+                        <option value="blank"></option>
+                        <option value="bachelor">Bachelor's degree</option>
+                        <option value="college">College degree</option>
+                        <option value="high_school">High school degree</option>
+                        <option value="middle_school">Middle school degree</option>
+                    </select>
+                    </div>
+                    <hr>
+                    <div class="networth">
+                    <label for="family_networth">Family networth:</label><br>
+                    <select id="networth">
+                        <option value="blank"></option>
+                        <option value="upper_class">More than 100,000$</option>
+                        <option value="middle_class">Between 50,000$ and 100,000$</option>
+                        <option value="lower_class">Less than 50,000$</option>
+                    </select>
+                    </div>
+                    <hr>
+                    <div class="skill">
+                    <p>Skills:</p>
+                    <form>
+                      <input type="checkbox" id="skill1" name="skill1" value="Dombyra">
+                      <label for="skill1"> Can play dombyra </label><br>
+                      <input type="checkbox" id="skill2" name="skill2" value="Cook">
+                      <label for="skill2"> Can cook good</label><br>
+                      <input type="checkbox" id="skill3" name="skill3" value="Character">
+                      <label for="skill3"> Has easygoing character </label><br>
+                      <input type="checkbox" id="skill4" name="skill4" value="Singing">
+                      <label for="skill4"> Can sing good </label><br>
+                    </form>
+                    </div>
+                    <hr>
+                    <div class="age">
+                    <form> 
+                      <p>Age:</p>
+                      <input type="radio" id="age1" name="age" value="18-23">
+                      <label for="age1">Between 18-23</label><br>
+                      <input type="radio" id="age2" name="age" value="24-27">
+                      <label for="age2">Between 24-27</label><br>
+                      <input type="radio" id="age3" name="age" value="28">
+                      <label for="age3">28+</label><br>
+                      </form>
+                    </div>
+                    <hr>
+                    <div class="reputation">
+                    <p>Reputation:</p>
+                    <form>
+                      <input type="checkbox" id="reputation1" name="reputation1" value="parents">
+                      <label for="reputation1"> Gossips about his/her parent's attitude </label><br>
+                      <input type="checkbox" id="reputation2" name="reputation2" value="character">
+                      <label for="reputation2"> Gossips about his/her character </label><br>
+                      <input type="checkbox" id="reputation3" name="reputation3" value="person">
+                      <label for="reputation3">  General gossips around his/her person </label><br>
+                    </form>
+                    </div>
+                    <hr>
+                  </form>
+                
+                <button id="submit" type="button" class="btn btn-primary">Calculate price</button>
+                <p id="price"></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+          $("button").click(function () {
+            let price = 500;
+            
+            let edu = document.getElementById('education').value;
+            let net = document.getElementById('networth').value;
+
+            let skill1 = document.getElementById("skill1").checked;
+            let skill2 = document.getElementById("skill2").checked;
+            let skill3 = document.getElementById("skill3").checked;
+            let skill4 = document.getElementById("skill4").checked;
+
+            let age1 = document.getElementById('age1').checked;
+            let age2 = document.getElementById('age2').checked;
+            let age3 = document.getElementById('age3').checked;
+
+            let reputation1 = document.getElementById('reputation1').checked;
+            let reputation2 = document.getElementById('reputation2').checked;
+            let reputation3 = document.getElementById('reputation3').checked;
+
+            if (edu == 'bachelor') {
+              price *= 1.5;
+            } else if (edu == 'college') {
+              price *= 1.2;
+            } else if (edu == 'high_school') {
+              price *= 1.05;
+            } else {
+              price *= 0.9;
+            }
+
+            if (net == 'upper_class') {
+              price *= 2;
+            } else if (net == 'middle_class') {
+              price *= 1.5;
+            } else {
+              price *= 1.2;
+            }
+
+            if (skill1 == true) price += 100;
+            if (skill2 == true) price += 200;
+            if (skill3 == true) price += 150;
+            if (skill4 == true) price += 100;
+
+            if (age1 == true) {
+              price *= 1.5;
+            } else if (age2 == true) {
+              price *= 1.2;
+            } else {
+              price *= 0.95;
+            }
+
+            if (reputation1 == true) {
+              price *= 0.85;
+            } else if (reputation2 == true) {
+              price *= 0.9;
+            } else {
+              price -= 200;
+            }
+
+            console.log(price);
+            document.getElementById('price').innerHTML = "Price for kalyn mal is " +  price;
+          });
+        });
+    </script>
+  </body>
+</html>
